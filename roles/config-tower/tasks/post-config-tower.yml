@@ -1,12 +1,12 @@
 - name: Create Homework Assignment project
   tower_project:
-    name: "three-tier-app"
+    name: "{{proj_name}}"
     description: "Three Tier App project"
     organization: "{{org_name}}"
     state: present
-    scm_branch: master
+    scm_branch: "{{scm_branch}}"
     scm_type: git
-    scm_url: "{{github_repo}}"
+    scm_url: "{{scm_url}}"
 
 
 

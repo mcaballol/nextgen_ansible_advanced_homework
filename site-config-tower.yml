@@ -1,7 +1,5 @@
 - hosts: localhost
   gather_facts: false
   become: yes
-  vars:
-    org_name: Default
   roles:
     - config-tower
