@@ -1,5 +1,14 @@
 - name: Create Homework Assignment project
-
+  tower_project:
+    name: "three-tier-app"
+    description: "Three Tier App project"
+    organization: "test"
+    state: present
+    tower_config_file: "~/tower_cli.cfg"
+    scm_branch: master
+    scm_type: git
+    scm_url: "{{github_repo}}"
+    
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
@@ -17,7 +26,7 @@
   command: |
     tower-cli inventory create -n "{{static_inventory_name}}" --organization "{{org_name}}"
 
-- name: Create Group in static inventory 
+- name: Create Group in static inventory
   command: |
     tower-cli group create --inventory "{{static_inventory_name}}"  --name {{group_name}}
 
@@ -33,8 +42,8 @@
     tower_password: r3dh4t1!
     tower_verify_ssl: no
 
-- name: Associate workstation host to group 
-  command: | 
+- name: Associate workstation host to group
+  command: |
     tower-cli host associate --host "{{host_name}}" --group "{{group_name}}"
 
 
@@ -55,4 +64,3 @@
   file:
     name: /root/secret.pem
     state: absent
-
