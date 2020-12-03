@@ -2,7 +2,7 @@
   tower_project:
     name: "three-tier-app"
     description: "Three Tier App project"
-    organization: "test"
+    organization: "{{org_name}}"
     state: present
     scm_branch: master
     scm_type: git
