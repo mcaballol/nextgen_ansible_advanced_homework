@@ -4,11 +4,11 @@
     description: "Three Tier App project"
     organization: "test"
     state: present
-    tower_config_file: "~/tower_cli.cfg"
+    tower_config_file: "~/.tower_cli.cfg"
     scm_branch: master
     scm_type: git
     scm_url: "{{github_repo}}"
-    
+
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
