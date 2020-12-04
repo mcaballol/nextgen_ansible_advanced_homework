@@ -1,4 +1,11 @@
 ---
+- name: get file
+  shell: " cat /home/cloud-user/.ssh/openstack.pub"
+  register: filecerssh
+
+- debug: var=filecerssh
+
+
 
 - name: Find out what the remote machine's mounts are
   slurp:
