@@ -1,5 +1,5 @@
 ---
-- debug: var=ansible_env.USER
+- debug: var=ansible_env
 - name: get file
   shell: " cat /home/cloud-user/.ssh/openstack.pub"
   register: filecerssh
