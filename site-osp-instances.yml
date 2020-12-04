@@ -1,6 +1,6 @@
 - hosts: localhost
   connection: local
   become: yes
-  gather_facts: true
+  gather_facts: false
   roles:
    - osp-servers
