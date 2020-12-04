@@ -28,5 +28,5 @@
       group: root
       mode: "{{item.mode}}"
     loop:
-      - "{name: 'openstack.pem', mode: '0400'}"
-      - "{name: 'openstack.pub', mode: '0644'}"
+      - {name: 'openstack.pem', mode: '0400'}
+      - {name: 'openstack.pub', mode: '0644'}
