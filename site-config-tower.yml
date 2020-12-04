@@ -23,9 +23,9 @@
   - name: Copy a ssh key to manage osp instances from isolated node
     copy:
       src: /root/.ssh/{{item.name}}
-      dest: /root/.ssh/{{item.name}}
-      owner: root
-      group: root
+      dest: /home/cloud-user/.ssh/{{item.name}}
+      owner: cloud-user
+      group: cloud-user
       mode: "{{item.mode}}"
     loop:
       - {name: 'openstack.pem', mode: '0400'}
