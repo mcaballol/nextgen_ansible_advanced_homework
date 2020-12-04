@@ -1,5 +1,32 @@
 - hosts: localhost
   gather_facts: false
   become: yes
+  vars:
+    OSP_GUID: "{{ lookup('env','OSP_GUID') }}"
+    OSP_DOMAIN: "{{ lookup('env','OSP_DOMAIN') }}"
+    TOWER_GUID: "{{ lookup('env','TOWER_GUID') }}"
   roles:
     - config-tower
+
+
+  tasks:
+  - name: Create In-memory Inventory
+    add_host:
+      name: workstation-{{ OSP_GUID }}.{{ OSP_DOMAIN }}
+      group: workstation
+      ansible_ssh_private_key_file: ~/.ssh/openstack.pem
+      ansible_ssh_user: cloud-user
+
+- hosts: workstation
+  gather_facts: false
+  tasks:
+  - name: Copy a ssh key to manage osp instances from isolated node
+    copy:
+      src: /root/.ssh/{{item.name}}
+      dest: /root/.ssh/{{item.name}}
+      owner: root
+      group: root
+      mode: "{{item.mode}}"
+    loop:
+      - "{name: 'openstack.pem', mode: '0400'}"
+      - "{name: 'openstack.pub', mode: '0644'}"
