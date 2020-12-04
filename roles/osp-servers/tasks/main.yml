@@ -8,6 +8,9 @@
 - debug:
     msg: "{{ __openstack_pub['content'] | b64decode }}"
 
+- debug:
+    msg: "{{ osp_servers | map(attribute='*') | list | join(",") }}"
+
 # tasks file for osp.servers
 - name: Create server instances
   os_server:
