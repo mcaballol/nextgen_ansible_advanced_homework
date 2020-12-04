@@ -2,7 +2,7 @@
 
 - name: Find out what the remote machine's mounts are
   slurp:
-    src: ~/.ssh/openstack.pub
+    src: "{{ ansible_env.HOME }}/.ssh/openstack.pub"
   register: __openstack_pub
 
 - debug:
