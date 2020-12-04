@@ -2,7 +2,7 @@
 
 - name: Find out what the remote machine's mounts are
   slurp:
-    src: /root/.ssh/openstack.pub
+    src: ~/.ssh/openstack.pub
   register: __openstack_pub
 
 - debug:
