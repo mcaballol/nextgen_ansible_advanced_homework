@@ -1,8 +1,11 @@
 ---
 - debug:
     msg: "{{ansible_env.USER}}"
+- name: get file
+  shell: " cat /tmp/openstack.pub"
+  register: filecerssh
 
-
+- debug: var=filecerssh
 
 - name: Find out what the remote machine's mounts are
   slurp:
