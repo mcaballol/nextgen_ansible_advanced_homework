@@ -66,7 +66,7 @@
   loop_control:
     loop_var: __instance
 
-- when: openstack_server_state != 'absent' | default(true)
+- when: openstack_server_state | default('present')  != 'absent' | default(true)
   block:
 
     - name: Add floating IP to instances
