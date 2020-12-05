@@ -38,7 +38,7 @@
       #!/bin/bash
       echo "{{ __openstack_pub['content'] | b64decode }}" > /tmp/openstack.pub
       cat /tmp/openstack.pub >> /home/cloud-user/.ssh/authorized_keys
-  loop: "{{ osp_servers.values() }}"
+  loop: "{{ osp_servers.values() | list }}"
   loop_control:
     loop_var: __osp_server
   async: 900
