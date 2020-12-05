@@ -24,9 +24,9 @@
 # tasks file for osp.servers
 - name: Create server instances
   os_server:
-    cloud:            "{{ openstack_cloud                           | default('openstack') }}"
+    cloud:            "{{ openstack_cloud                     | default('openstack') }}"
     name:             "{{ __osp_server.name }}"
-    state:            "{{ openstack_server_state              | default(__osp_server.state) | default('present') }}"
+    state:            "{{ __osp_server.state                  | default('present') }}"
     image:            "{{ __osp_server.image                  | default('rhel-guest') }}"
     flavor:           "{{ __osp_server.flavor                 | default('m1.medium') }}"
     key_name:         "{{ __osp_server.key_name               | default('ansible_ssh') }}"
@@ -66,13 +66,12 @@
   loop_control:
     loop_var: __instance
 
-- when: openstack_server_state | default('present')  != 'absent' | default(true)
-  block:
+- block:
 
     - name: Add floating IP to instances
       os_floating_ip:
         cloud: openstack
-        state: "{{ openstack_server_state | default('present') }}"
+        state: "{{ __instance.__osp_server.state }}"
         reuse: yes
         server: "{{ __instance.__osp_server.name }}"
         network: ext_network
