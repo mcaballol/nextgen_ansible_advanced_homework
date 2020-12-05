@@ -18,6 +18,9 @@
 - debug:
     msg: "{{ osp_servers.values() }}"
 
+- debug:
+    msg: "{{ osp_servers.values() | list }}"
+
 # tasks file for osp.servers
 - name: Create server instances
   os_server:
